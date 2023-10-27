@@ -30,4 +30,14 @@ class Jiri extends Model
             ->withPivot('role')
             ->wherePivot('role', 'evaluator');
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function implementations()
+    {
+        return $this->hasManyThrough(Implementation::class, Project::class);
+    }
 }
