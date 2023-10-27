@@ -23,12 +23,17 @@
         <form wire:submit="save">
 
             <div><label for="newcontactname">New Contact Name</label>
-                <input type="text" id="newcontactname" wire:model="newcontactname" x-model="contactname"></div>
+                <input type="text"
+                       id="newcontactname"
+                       x-model="contactname"
+                       wire:model="newcontactname"></div>
 
             <div><label for="newcontactemail">New Contact Email</label>
-                <input type="email" id="newcontactemail" wire:model="newcontactemail"></div>
+                <input type="email"
+                       id="newcontactemail"
+                       wire:model="newcontactemail"></div>
 
-            <button type="submit">Save</button>
+            <button type="submit" x-on:click="$wire.set('newcontactname',contactname)">Save</button>
 
         </form>
     </template>
