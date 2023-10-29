@@ -26,5 +26,5 @@ Route::get('jiris', function () {
 });
 
 Route::get('jiris/{jiri}', function (Jiri $jiri) {
-    return $jiri->load('students', 'evaluators');
+    return $jiri->load('students', 'students.implementations.project', 'evaluators');
 });
