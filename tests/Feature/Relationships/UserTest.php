@@ -25,3 +25,17 @@ it('is possible to fetch all the contacts of a user', function () {
     // assert that the use has 3 contacts
     expect($user->contacts()->count())->toBe(3);
 });
+
+it('is not possible for a user to fetch the jiris of another user', function () {
+    $user = User::factory()
+        ->has(Jiri::factory(4))
+        ->create();
+    $anotherUser = User::factory()
+        ->has(Jiri::factory(4))
+        ->create();
+
+    // Testing the existence of the relationship
+    expect($user->jiris)->toHaveCount(4)
+        ->and($anotherUser->jiris)->toHaveCount(4)
+        ->and($user->jiris)->not->toBe($anotherUser->jiris);
+});
