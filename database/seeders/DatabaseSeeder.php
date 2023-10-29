@@ -54,12 +54,12 @@ class DatabaseSeeder extends Seeder
                                 'jiri_id' => $jiri->id,
                                 'urls' => json_encode([
                                     'github' => 'https://github.com',
-                                    'trello' => 'https://trello.com']),
+                                    'trello' => 'https://trello.com'], JSON_THROW_ON_ERROR),
                             ]
                         );
                     }
                     if ($role === 'evaluators') {
-                        //optionnally create token for contact
+                        //create access token for evaluator
                         $contact->jiris()->updateExistingPivot($jiri->id, [
                             'token' => Str::random(32),
                         ]);
