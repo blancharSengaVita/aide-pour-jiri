@@ -12,6 +12,12 @@ class Jiri extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'starting_at',
+        'duration',
+    ];
+
     public function user(): BelongsTo
     {
         return $this

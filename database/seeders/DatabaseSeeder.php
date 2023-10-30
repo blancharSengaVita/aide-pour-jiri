@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use function Laravel\Prompts\password;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ->create([
                 'name' => 'Dominique Vilain',
                 'email' => 'dominique.vilain@hepl.be',
+                'password' => bcrypt('change_this'),
             ]);
         $myriam = User::factory()
             ->has(Jiri::factory()->count(2))
@@ -32,6 +34,7 @@ class DatabaseSeeder extends Seeder
             ->create([
                 'name' => 'Myriam Dupont',
                 'email' => 'myriam.dupont@hepl.be',
+                'password' => bcrypt('change_this'),
             ]);
 
         $users = collect([$dominique, $myriam]);

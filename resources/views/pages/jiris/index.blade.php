@@ -15,5 +15,6 @@
             @endforeach
         </ul>
     @endunless
+    <p><a href="/jiris/create">Create a new jiri</a></p>
 </body>
 </html>
