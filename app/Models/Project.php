@@ -15,4 +15,12 @@ class Project extends Model
         return $this
             ->hasMany(Implementation::class);
     }
+
+    /*
+    * Apply a query scope to retrieve only the projects of the authenticated user
+    */
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new Scopes\AuthUserScope());
+    }
 }

@@ -63,4 +63,12 @@ class Jiri extends Model
             ->withPivot('role','token')
             ->wherePivot('role', 'evaluator');
     }
+
+    /*
+     * Apply a query scope to retrieve only the jiris of the authenticated user
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new Scopes\AuthUserScope());
+    }
 }
