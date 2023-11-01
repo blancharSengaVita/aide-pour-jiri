@@ -59,7 +59,7 @@ it('displays the jiris in the chronological order', function(){
         ]);
 
     actingAs($user)
-        ->get('jiris')
+        ->get('/jiris')
         ->assertSeeInOrder([$jiri3->name, $jiri2->name, $jiri1->name]);
 });
 

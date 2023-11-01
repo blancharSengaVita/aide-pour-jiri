@@ -29,7 +29,7 @@ it('creates a jiri', function () {
             'starting_at' => $startingAt,
             'duration' => 60,
         ])
-        ->assertRedirect('jiris');
+        ->assertRedirect('/jiris');
 
     $this->assertDatabaseHas('jiris', [
         'name' => 'Jiri 1',
