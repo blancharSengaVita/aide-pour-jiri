@@ -42,12 +42,4 @@ class Contact extends Model
         return $this
             ->HasMany(Implementation::class);
     }
-
-    /*
-     * Apply a query scope to retrieve only the contacts of the authenticated user
-     */
-    protected static function booted(): void
-    {
-        static::addGlobalScope(new Scopes\AuthUserScope());
-    }
 }

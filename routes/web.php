@@ -15,14 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/jiris', [JiriController::class, 'index'])
-    ->name('jiris.index');
-
 Route::middleware('auth')->group(function () {
     Route::get('/', [JiriController::class, 'index'])
         ->name('home');
 
-
+    Route::get('/jiris', [JiriController::class, 'index'])
+        ->name('jiris.index');
     Route::get('/jiris/create', [JiriController::class, 'create'])
         ->name('jiris.create');
     Route::post('/jiris', [JiriController::class, 'store'])

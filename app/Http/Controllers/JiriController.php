@@ -9,10 +9,10 @@ use Request;
 
 class JiriController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $jiris = Jiri
-            ::orderBy('starting_at','asc')
+        $jiris = auth()->user()?->jiris()
+            ->orderBy('starting_at','asc')
             ->get();
 
         return view('pages.jiris.index', compact('jiris'));
@@ -20,8 +20,6 @@ class JiriController extends Controller
 
     public function create(): View
     {
-        info('JiriController@index');
-
         return view('pages.jiris.create');
     }
 

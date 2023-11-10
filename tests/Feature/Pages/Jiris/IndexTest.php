@@ -9,13 +9,12 @@ it('has a jiris index page accessible to authenticated users only', function () 
     $user = User::factory()
         ->create();
 
-    get('jiris')
-        ->assertRedirect('login');
+    get(route('jiris.index'))
+        ->assertRedirect(route('login'));
 
     actingAs($user)
-        ->get('jiris')
+        ->get(route('jiris.index'))
         ->assertOK();
-
 });
 
 it('displays only the jiris of the authenticated user', function () {
@@ -25,13 +24,14 @@ it('displays only the jiris of the authenticated user', function () {
         ->create([
             'user_id' => $user->id,
         ]);
+    info($jiri->name);
     $anotherUser = User::factory()
         ->create();
     $anotherJiri = Jiri::factory()
         ->create([
             'user_id' => $anotherUser->id,
         ]);
-
+    info($anotherJiri->name);
     actingAs($user)
         ->get('jiris')
         ->assertSee($jiri->name)
@@ -68,6 +68,6 @@ it('displays a link to a jiri creation page', function () {
         ->create();
 
     actingAs($user)
-        ->get('jiris')
+        ->get('/jiris')
         ->assertSee('Create a new jiri');
 });
