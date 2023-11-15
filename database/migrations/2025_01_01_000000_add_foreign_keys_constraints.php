@@ -10,22 +10,22 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('jiris', function (Blueprint $table) {
+        Schema::table('jiris', static function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
         });
-        Schema::table('contacts', function (Blueprint $table) {
+        Schema::table('contacts', static function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
         });
-        Schema::table('attendances', function (Blueprint $table) {
+        Schema::table('attendances', static function (Blueprint $table) {
             $table->foreignId('contact_id')->constrained();
         });
-        Schema::table('attendances', function (Blueprint $table) {
+        Schema::table('attendances', static function (Blueprint $table) {
             $table->foreignId('jiri_id')->constrained();
         });
-        Schema::table('projects', function (Blueprint $table) {
+        Schema::table('projects', static function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
         });
-        Schema::table('implementations', function (Blueprint $table) {
+        Schema::table('implementations', static function (Blueprint $table) {
             $table->foreignId('project_id')->constrained();
             $table->foreignId('contact_id')->constrained();
             $table->foreignId('jiri_id')->constrained();
@@ -38,6 +38,25 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        //
+        Schema::table('jiris', static function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
+        Schema::table('contacts', static function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
+        Schema::table('attendances', static function (Blueprint $table) {
+            $table->dropForeign(['contact_id']);
+        });
+        Schema::table('attendances', static function (Blueprint $table) {
+            $table->dropForeign(['jiri_id']);
+        });
+        Schema::table('projects', static function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
+        Schema::table('implementations', static function (Blueprint $table) {
+            $table->dropForeign(['project_id']);
+            $table->dropForeign(['contact_id']);
+            $table->dropForeign(['jiri_id']);
+        });
     }
 };
