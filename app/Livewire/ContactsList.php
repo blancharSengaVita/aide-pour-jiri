@@ -19,16 +19,6 @@ class ContactsList extends Component
     #[Rule('required', 'email', 'unique:users,email')]
     public $newcontactemail;
 
-    #[Computed]
-    public function contacts()
-    {
-        return $this->contactname
-            ? Contact::where('name', 'like', '%' . $this->contactname . '%')
-                ->orderBy('name', 'asc')
-                ->get()
-            : new Collection();
-    }
-
     public function save()
     {
         $dominique = User::whereEmail('dominique.vilain@hepl.be')
@@ -37,5 +27,15 @@ class ContactsList extends Component
             'name' => $this->newcontactname,
             'email' => $this->newcontactemail,
         ]);
+    }
+
+    #[Computed]
+    public function contacts()
+    {
+        return $this->contactname
+            ? Contact::where('name', 'like', '%' . $this->contactname . '%')
+                ->orderBy('name', 'asc')
+                ->get()
+            : new Collection();
     }
 }
